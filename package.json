@@ -2,12 +2,8 @@
   "name": "reading_buddy",
   "version": "1.0.0",
   "description": "hackathon project",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "echo \"Error: write code here to execute start\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/alekskivuls/ReadingBuddy/issues"
   },
-  "homepage": "https://github.com/alekskivuls/ReadingBuddy#readme"
+  "homepage": "https://github.com/alekskivuls/ReadingBuddy#readme",
+  "dependencies": {
+    "expresss": "0.0.0"
+  }
 }
