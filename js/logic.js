@@ -15,6 +15,10 @@
 (function(){
 	'use strict';
 
+	//global until i figure out how
+	var result = [];//index is nth word. Can just push to this.
+	//{index: 18, color: 0}, {index: 74, err_msg: 1, color: 1} //means 74th index word is yellow because of reason in index 1.
+
 	//Wreck cars checking functions. (Case where one word becomes two.)
 	//in this case there will be two "add" pushed to the stack. with same index.
 	//exact same obj in result means this case. [TODO]
@@ -58,13 +62,13 @@
 	//Return an int that tells you how much you add to users' current pointer, and start back comparing there.
 	var check = function (i, original, user) {
 		//calls other ck functions.
-		//check repeat first 
-		if (ck_adding(original, user)) {
-			result.push({index: i, err_msg: 1, color: 1}); //skipped, and yellow.
-			return 2;
-		} else if (ck_repeat(original, user)) {
-			result.push({index: i, err_msg: 0, color: 1});
+		//check repeat first since pattern is similar to adding.
+		if (ck_repeat(original, user)) { //because design, user ahead of origin.
+			result.push({index: i-1, err_msg: 0, color: 1});
 			//change to origional pointer
+			return 2;
+		} else if (ck_adding(original, user)) {
+			result.push({index: i, err_msg: 1, color: 1}); //skipped, and yellow.
 			return 2;
 		} else if (ck_skipping(original, user)) {
 			result.push({index: i, err_msg: 2, color: 0});
@@ -84,8 +88,6 @@
 		var u = 0;
 		var original = original_.split(" ");//"Your original paragraph here.";
 		var user = user_.split(" ");//"Whatever the API said the user read your paragraph as.";
-		var result = [];//index is nth word. Can just push to this.
-		//{index: 18, color: 0}, {index: 74, err_msg: 1, color: 1} //means 74th index word is yellow because of reason in index 1.
 
 		//check syntax for &&
 		while((1 < original.length) && (u < user.length)) {
@@ -101,8 +103,26 @@
 			}
 			++i;
 		}
+
+		//tested output
+		console.log(result);
 	};
+	//$(init());
 
-	$(init());
+	//testing
 
+
+	//Green not set; default green, Yellow = 1, Red = 0; 
+	//ErrMsg: Repeat = 0, Add = 1, Skip = 2, Incorrect compeletely = 3 (program logic to check chap list for this case !! [TODO]).
+
+	//use asset or whatever that testing keyword is.
+	init("the dog ran", "the dog ran");
+	init("the dog ran", "the dog dog ran"); //expect err: 0, color: 1, index: 1.
+	init("the dog ran", "the dog ban"); //expect err: 3, color: 0 index: 2.
+	init("the dog ran", "the dog no ran"); //expect err: 1, color: 1, index: 2. (group with latter.)
+	init("the dog ran", "the ran"); //expect err: 2, color: 0, index: 1.
+
+	//durring test, same array each time because global and never cleared. 
+
+	//clear global result when done
 }());
