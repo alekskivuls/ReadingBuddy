@@ -15,8 +15,9 @@
 (function(){
 	'use strict';
 
-	//Recursive checking functions.
 	//Wreck cars checking functions. (Case where one word becomes two.)
+	//in this case there will be two "add" pushed to the stack. with same index.
+	//exact same obj in result means this case. [TODO]
 	//Re Recursive checking functions functions. (Redundant humans. Don't pick original paragraphs with repeats.)
 	//Recursive functions. (Case where you skipped a word. Code Red.)
 
@@ -25,12 +26,23 @@
 	var ck_repeat = function (original, user) {
 		//User error, don't repeat words, yellow as warning.
 		//Message in evaluation to not repeat and offer pronouciation.
+		// if (original[0] === user[1]) { //u: "(i i saw) a dog" o: "(i saw) a dog"
+		// 	if (original.length === 2) { //butt end. u: "i saw (a a dog)"
+		// 		//discounting "i saw a dog dog"
+		// 		return original[1] === user[2];
+		// 	}
+		// 	return true; 
+		// }
+		return ((original[0] === user[1]) && (original[1] === user[2]))
 
 	};
 
 	//RED: return boolean
 	var ck_skipping = function (original, user) {
-
+		if (original[0] === user[0]) { //u: run the dog o: run to the dog 
+			return original[2] === user[1];
+		}
+		return user[0] === original[1];
 	};
 
 	//YELLOW: return boolean
@@ -49,12 +61,17 @@
 		//check repeat first 
 		if (ck_adding(original, user)) {
 			result.push({index: i, err_msg: 1, color: 1}); //skipped, and yellow.
+			return 2;
 		} else if (ck_repeat(original, user)) {
 			result.push({index: i, err_msg: 0, color: 1});
+			//change to origional pointer
+			return 2;
 		} else if (ck_skipping(original, user)) {
 			result.push({index: i, err_msg: 2, color: 0});
+			return 0; //stay where you are
 		} else { //you're just wrong
 			result.push({index: i, err_msg: 3, color: 0});
+			return 1;
 		}
 		//logic for if none of top and next is correct the its just wrong. 
 		//call something to give me a list of potential other top words for that index of users' speech.
