@@ -12,14 +12,16 @@ var cal_acc = function (original, result) {
 	//Given array of reds and yellow.
 	//original
 	var score = original.length;
-	for (error : result) {
-		if (error.color == 0) { //red
+	for (i = 0; i < result.length; i++) {
+		if (result[i].color == 0) { //red
 			score = score - 1;
 			//saying extra words will dock you another red. 
 		} else {
 			//yellow
-			score = score - 0.5;
+			score = score - 0.5; 
 		}
 	}
 	return score/original.length;
 }
+
+
