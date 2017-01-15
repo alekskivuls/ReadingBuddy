@@ -10,8 +10,8 @@ app.get('/', function(req, res){
 
 	var express = require('express');
 
-	app.use(express.static(path.join(_dirname)));
-	res.sendFile(path.join(_dirname, 'view/index.html'));
+	app.use(express.static(path.join(__dirname)));
+	res.sendFile(path.join(__dirname, 'view/index.html'));
 });
 
 
