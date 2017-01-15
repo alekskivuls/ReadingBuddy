@@ -16,6 +16,8 @@
   },
   "homepage": "https://github.com/alekskivuls/ReadingBuddy#readme",
   "dependencies": {
+    "binaryjs": "^0.2.1",
+    "binaryjs-client": "^1.0.0",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
     "expresss": "0.0.0",

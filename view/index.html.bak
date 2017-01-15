@@ -1,0 +1,79 @@
+ <!DOCTYPE html>
+<html lang="en" ng-app="readingBuddy">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Reading Buddy</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <!-- <div class="container fluid">
+      <div ng-controller="controller_audio"> -->
+        
+      <!-- </div>
+      <button ng-click="startRecording()">Start Recording</button>
+      <button ng-click="stopRecording()"> Stop Recording</button>
+    </div> -->
+    <h1>Hello, world!</h1>
+
+    <div ng-controller="controller_audio">
+      
+      <ng-audio-recorder id='audioInput' audio-model='recordedInput'>
+        <div ng-if="recorder.isAvailable">
+          
+          <button ng-click="recorder.startRecord()" type="button" ng-disabled="recorder.status.isRecording"> Start Record 
+          {{recorder.status.isRecording}}</button>
+
+          <button ng-click="recorder.stopRecord()"  type="button" ng-disabled="recorder.status.isRecording === false"> Stop Record</button>
+
+          <button ng-click="recorder.playbackRecording()" type="button" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+          Play Back
+          </button>
+
+          <button ng-click="recorder.save(audio)">save</button>
+        </div>
+      </ng-audio-recorder>
+    </div>
+    <button ng-click="test(); test2()">test</button>
+
+
+
+    <!-- BinaryJS -->
+    <!--
+    <script src="js/binary.js"></script>
+    -->
+
+    <!-- Socket.io -->
+    <script src="js/socketio.js"></script>
+    <!-- Socket.io-Stream -->
+    <script src="js/socket.io.stream.js"></script>
+    <!-- RecordRTC -->
+    <script src="//www.WebRTC-Experiment.com/RecordRTC.js"></script>
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- AngularJS -->
+    <script src="js/angular.min.js"></script>
+    <script src="js/angularApp.js"></script>
+    <script src="js/service.js"></script>
+    
+    <script src="js/controller.js"></script>
+
+    <script src="js/angular-audio-recorder.min.js"></script>
+  </body>
+</html> 
